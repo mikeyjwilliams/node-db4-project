@@ -7,7 +7,7 @@ const recipeModel = require('./recipes-model');
  * @route /api/recipes
  * @return []
  */
-router.get('/api/recipes', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const recipes = await recipeModel.getRecipes();
     res.status(200).json(recipes);
@@ -21,7 +21,7 @@ router.get('/api/recipes', async (req, res, next) => {
  * @route /api/recipes/:id/shoppingList
  * @return []
  */
-router.get('/api/recipes/:id/shoppingList', async (req, res, next) => {
+router.get('/:id/shoppingList', async (req, res, next) => {
   const { id } = req.params;
   try {
     const shoppingList = await recipeModel.getShoppingList(id);
@@ -37,7 +37,7 @@ router.get('/api/recipes/:id/shoppingList', async (req, res, next) => {
   }
 });
 
-router.get('/api/recipes/:id/instructions', async (req, res, next) => {
+router.get('/:id/instructions', async (req, res, next) => {
   const { id } = req.params;
   try {
     const instructions = await recipeModel.getInstructions(id);
