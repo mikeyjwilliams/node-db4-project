@@ -37,6 +37,9 @@ router.get('/:id/shoppingList', async (req, res, next) => {
   }
 });
 
+/**
+ *
+ */
 router.get('/:id/instructions', async (req, res, next) => {
   const { id } = req.params;
   try {
