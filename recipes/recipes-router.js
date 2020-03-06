@@ -28,7 +28,23 @@ router.get('/api/recipes/:id/shoppingList', async (req, res, next) => {
     if (shoppingList) {
       res.status(200).json(shoppingList);
     } else {
-      res.status(400).json({ message: 'recipe ID not found.' });
+      res
+        .status(400)
+        .json({ message: 'recipe ID not found for shopping list.' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/api/recipes/:id/instructions', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const instructions = await recipeModel.getInstructions(id);
+    if (instructions) {
+      res.status(200).json(instructions);
+    } else {
+      res.status(400).json({ message: 'recipe ID for instructions not found' });
     }
   } catch (err) {
     next(err);
