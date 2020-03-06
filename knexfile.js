@@ -8,10 +8,10 @@ module.exports = {
       filename: './data/recipes.db3',
     },
     migrations: {
-      filename: './data/migrations',
+      directory: './data/migrations',
     },
     seeds: {
-      filename: './data/seeds',
+      directory: './data/seeds',
     },
     pool: {
       afterCreate: (conn, done) => {
