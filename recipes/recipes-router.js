@@ -17,6 +17,28 @@ router.get('/', async (req, res, next) => {
 });
 
 /**
+ * @type POST
+ * @route /api/recipes
+ * @return {}
+ */
+router.post('/', async (req, res, next) => {
+	const { name } = req.body;
+	if (!name) {
+		return res.status(400).json({ message: 'recipe_name is required' });
+	}
+	const recipe = {
+		name: name
+	};
+	try {
+		const recipePost = await recipeModel.postRecipe(recipe);
+		res.status(201).json(recipePost);
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+});
+
+/**
  * @type: GET
  * @route /api/recipes/:id/shoppingList
  * @return []
