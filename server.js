@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.send('recipe book is up and running');
 });
 
-router.use('/', recipesRouter);
+router.use('/api/recipes', recipesRouter);
 
 router.use((req, res) => {
   res
