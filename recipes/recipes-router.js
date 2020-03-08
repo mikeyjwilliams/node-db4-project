@@ -83,4 +83,35 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+/**
+ *  api/recipes/:id/ingredients
+ */
+
+router.post('/:id/ingredients', async (req, res, next) => {
+  const recipe_id = req.params.id;
+
+  const { ingredient_name, quantity } = req.body;
+  if (!ingredient_name) {
+    res.status(400).json({ message: 'ingredient_name required' });
+  }
+  if (!quantity) {
+    res.status(400).json({ message: 'quantity required' });
+  }
+  const ing = {
+    ingredient_name: ingredient_name,
+  };
+
+  try {
+    const ingred = await recipeModel.postIngredientRecipe(
+      recipe_id,
+      ing,
+      quantity
+    );
+    res.status(201).json(ingred);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 module.exports = router;
